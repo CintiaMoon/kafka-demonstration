@@ -1,0 +1,39 @@
+spring:
+  application:
+    name: filter-service
+    
+#  data:
+#    mongodb:
+#      database: mongodb-filterdb
+#      uri: mongodb://localhost:27017
+
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: filter-api-mongo
+      username: root
+      password: password
+      authentication-database: admin
+      
+  kafka:
+    consumer:
+      auto-offset-reset: earliest
+      bootstrap-servers: http://localhost:9092
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+server:
+  port: 6020
+  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  
