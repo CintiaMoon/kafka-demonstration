@@ -1,0 +1,38 @@
+spring:
+    application:
+        name: inventory-service
+        
+    datasource:
+        password: admin
+        url: jdbc:postgresql://localhost:5432/inventorydb
+        username: root
+    jpa:
+        hibernate:
+            ddl-auto: update
+        properties:
+            hibernate:
+                dialect: org.hibernate.dialect.PostgreSQLDialect
+    kafka:
+        producer:
+            bootstrap-servers: http://localhost:9092
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        consumer:
+            auto-offset-reset: earliest
+            bootstrap-servers: http://localhost:9092
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            properties:
+                spring:
+                    json:
+                        trusted:
+                            packages: "*"
+            value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+
+server:
+    port: 6010
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
