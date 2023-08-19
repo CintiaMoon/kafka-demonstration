@@ -1,0 +1,237 @@
+{
+	"info": {
+		"_postman_id": "2367fdaa-c318-4d70-9023-11676c8d92fa",
+		"name": "Kafka Demonstration",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6616923"
+	},
+	"item": [
+		{
+			"name": "Get Cars",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6010/api/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6010",
+					"path": [
+						"api",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Filters",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6020/api/filters",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6020",
+					"path": [
+						"api",
+						"filters"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Models",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6010/api/models",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6010",
+					"path": [
+						"api",
+						"models"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all Brands",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6010/api/brands",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6010",
+					"path": [
+						"api",
+						"brands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Brand",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"brandId\", pm.response.json().id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Jeep\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:6010/api/brands",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6010",
+					"path": [
+						"api",
+						"brands"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Car",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"carId\", pm.response.json().id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"modelId\": \"{{modelId}}\",\r\n    \"modelYear\": \"2017\",\r\n    \"plate\": \"15 LMN 678\",\r\n    \"dailyPrice\": 158.6\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:6010/api/cars",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6010",
+					"path": [
+						"api",
+						"cars"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Model",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"modelId\", pm.response.json().id);\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"brandId\": \"{{brandId}}\",\r\n    \"name\" : \"Renegade\"\r\n}"
+				},
+				"url": {
+					"raw": "http://localhost:6010/api/models",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6010",
+					"path": [
+						"api",
+						"models"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Brand",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:6010/api/brands/{{brandId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "6010",
+					"path": [
+						"api",
+						"brands",
+						"{{brandId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
